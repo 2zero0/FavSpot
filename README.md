@@ -10,6 +10,7 @@
 * 🗺 지도에서 마음에 드는 장소를 골라 보드에 저장하고, 해당 장소에 대한 사진과 짧은 글을 남길 수 있습니다.
 * 🔖 보드에 태그를 추가할 수 있고, 태그 기준으로 보드 검색이 가능합니다.
 * 💛 보드를 구경하다가 마음에 드는 보드에 좋아요를 등록하거나, 댓글을 남길 수 있습니다.
+* 🔔 새 팔로워, 내 보드에 댓글 또는 좋아요, 좋아요한 보드에 새로운 핀이 추가되었을 때 실시간 알림을 통해 알려줍니다.
 
 <br>
 
@@ -27,25 +28,32 @@
 
 ## 프로젝트 기간
 ### 정규 프로젝트 기간
-<img width="900px" src="https://github.com/inslog94/FavSpot/assets/43246395/13cf8f98-f5de-47fa-b02b-0f2214139c95">
+<img width="900px" src="https://github.com/inslog94/FavSpot/assets/43246395/7a7e3d60-bb28-4930-81de-26b47265d343">
 
 ### 고도화 기간
-#### 정규 프로젝트 기간 이후 미흡했던 부분을 개선하고 더욱 완성도 있는 프로젝트를 위해 추가적인 기능 구현, 리팩토링을 위한 시간을 가졌습니다.
-<img width="900px" src="https://github.com/inslog94/FavSpot/assets/43246395/7ab36c2e-a484-4c7f-a69a-cdc83a51f6db">
+정규 프로젝트 기간 이후 미흡했던 부분을 개선하고 더욱 완성도 있는 프로젝트를 위해 추가적인 기능 구현, 리팩토링을 위한 시간을 가졌습니다.
+<img width="900px" src="https://github.com/inslog94/FavSpot/assets/43246395/4e880fa7-7551-46b2-a09c-20503531d2bb">
+
 
 <br>
 
 ### [목차]
 1. [Collaborators](#1-collaborators)
-2. [개발환경](#2-개발환경)
-3. [협업 및 프로젝트 관리](#3-협업-및-프로젝트-관리)
-4. [일일 회의](#4-일일-회의)
-5. [BE 프로젝트 구조](#5-be-프로젝트-구조)
-6. [프로젝트 기획(마인드맵)](#6-프로젝트-기획마인드맵)
-7. [데이터베이스 설계](#7-데이터베이스-설계)
-8. [[BE] URL / Method 기능 설계](#8-be-url--method-기능-설계)
-9. [[FE] 페이지 구상 및 기능 설계](#9-fe-페이지-구상-및-기능-설계)
-10. [샘플 이미지](#10-샘플-이미지)
+2. [배포 url](#2-배포-url)
+3. [개발-및-배포-환경](#3-개발-및-배포-환경)
+4. [협업 및 프로젝트 관리](#4-협업-및-프로젝트-관리)
+5. [주요 기능](#5-주요-기능)
+6. [일일 회의](#6-일일-회의)
+7. [고도화 기록](#7-고도화-기록)
+8. [협업 방식](#8-협업-방식)
+9. [프로젝트 구조](#9-프로젝트-구조)
+10. [프로젝트 기획마인드맵](#10-프로젝트-기획마인드맵)
+11. [데이터베이스 설계](#11-데이터베이스-설계)
+12. [기능 설계](#12-기능-설계)
+13. [api 명세서](#13-api-명세서)
+14. [샘플 이미지](#14-샘플-이미지)
+15. [느낀점](#15-느낀점)
+
 <br><br>
 
 ## 1. Collaborators
@@ -57,16 +65,17 @@
 
 ## 2. 배포 URL
 ### URL
-**http:// ~~~**
+**http://favspot.site**
 
 ### Test Account
 ```
-ID:
-PW:
+ID: test@email.com
+PW: 12345
 ```
 <br>
 
-## 3. 개발환경
+## 3. 개발 및 배포 환경
+### 3-1. 개발환경
 #### 가상 환경 및 의존성 관리
 <img src="https://img.shields.io/badge/poetry-60A5FA?style=for-the-badge&logo=poetry&logoColor=white">
 
@@ -81,7 +90,13 @@ PW:
 
 #### 서비스 배포 환경
 <img src="https://img.shields.io/badge/amazon lightsail-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white"><img src="https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"><img src="https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white">
-<br><br>
+
+<br>
+
+### 3-2. 아키텍처 구성도
+<img width="900px" alt="image" src="https://github.com/inslog94/FavSpot/assets/43246395/6a52ba1f-a8c3-4257-836f-e8ba325a9b44">
+
+<br>
 
 ## 4. 협업 및 프로젝트 관리
 ### Commit Convention
@@ -125,7 +140,8 @@ PW:
     왼쪽 검색창을 통해 원하는 장소를 검색하면 지도상에 그 장소의 마커가 표시됩니다.
     마커를 클릭하면 그 장소에 대한 간략한 정보와 함께 
     상세보기, 간편 생성(보드, 핀)을 할 수 있는 버튼이 있는 작은 창이 생깁니다.
-    오른쪽 보드 목록에는 처음에는 랜덤한 공개 보드가 나타나며 지도 검색창 사용 시 키워드에 맞는 보드 목록이 나타납니다.
+    오른쪽 보드 목록에는 처음에는 랜덤한 공개 보드가 나타나며,
+    지도 검색창 사용 시 키워드에 맞는 보드 목록이 나타납니다.
     ```
 
 ### 5-2. Pin
@@ -134,7 +150,8 @@ PW:
 
 -   핀 생성 | 조회
     ```
-    지도의 핀 간편 저장이나 핀 상세보기 모달의 저장 버튼을 통해 자신의 보드에 원하는 장소를 핀의 형태로 저장할 수 있습니다.
+    지도의 핀 간편 저장이나 핀 상세보기 모달의 저장 버튼을 통해
+    자신의 보드에 원하는 장소를 핀의 형태로 저장할 수 있습니다.
     핀에는 카카오 API에서 제공하는 정보들과 크롤링을 통한 대표 이미지가 포함됩니다.
 
     핀 상세보기 모달은 메인페이지의 지도 위, 보드 상세보기 페이지, 
@@ -142,13 +159,13 @@ PW:
     핀 상세보기 모달에서는 그 장소에 대한 정보와 코멘트들을 확인할 수 있습니다. 
     코멘트는 1페이지당 3개씩 볼 수 있는 페이지네이션이 적용되어 있습니다.
     해당 장소에 대한 정적 지도가 포함되어 있습니다.
-
     ```
 
 -   핀 코멘트 생성 | 조회 | 수정 | 삭제
     ```
     핀을 저장할 때 그 장소에 대한 사진과 짧은 글이 포함된 코멘트를 작성할 수 있습니다. 
-    이 때 코멘트를 작성하지 않는다면(사진, 글 둘 다 작성하지 않을 시) is_deleted=True의 속성을 가진 코멘트가 생성됩니다.
+    이 때 코멘트를 작성하지 않는다면(사진, 글 둘 다 작성하지 않을 시),
+    is_deleted=True의 속성을 가진 코멘트가 생성됩니다.
     코멘트는 자신의 유저 정보 페이지의 핀 코멘트 목록에서 수정, 삭제할 수 있습니다. 
     내용이 없거나 이미 삭제한 is_deleted=True인 코멘트도 수정하여 살릴 수 있습니다.
     핀 상세보기 모달에서도 본인의 코멘트를 삭제할 수 있습니다.
@@ -160,9 +177,11 @@ PW:
 -   보드 생성 | 조회 | 수정 | 삭제
     ```
     보드의 제목과 태그를 입력, 공개 여부를 설정하여 본인의 유저 정보 페이지에서 새로운 보드를 생성하거나,
-    메인페이지에서 장소 검색을 통해 보드에 저장하고 싶은 곳을 찾고 즉석으로 보드를 간편하게 생성할 수 있습니다.
+    메인페이지에서 장소 검색을 통해 보드에 저장하고 싶은 곳을 찾고
+    즉석으로 보드를 간편하게 생성할 수 있습니다.
 
-    공개된 보드는 메인페이지에서 조회되는데, 검색 시 검색어가 제목 또는 태그에 포함된 보드라면 검색 결과 목록에 조회됩니다.
+    공개된 보드는 메인페이지에서 조회되는데,
+    검색 시 검색어가 제목 또는 태그에 포함된 보드라면 검색 결과 목록에 조회됩니다.
     자신의 보드 목록은 유저 정보 페이지에서 확인할 수 있습니다.
 
     보드 상세보기 페이지에서는 보드 정보로 보드의 이름, 작성자, 작성 시간, 좋아요 개수, 태그가 표기됩니다.
@@ -180,7 +199,8 @@ PW:
     ```
     좋아요 버튼을 눌러 특정 보드에 대한 좋아요를 등록하고 다시 한번 누르면 해제할 수 있습니다.
 
-    유저 정보 페이지에서 좋아요한 보드 목록 버튼을 눌러 본인이 좋아요를 등록한 보드 목록을 조회할 수 있습니다.
+    유저 정보 페이지에서 좋아요한 보드 목록 버튼을 눌러
+    본인이 좋아요를 등록한 보드 목록을 조회할 수 있습니다.
     다른 유저의 정보 페이지에서도 다른 유저가 좋아요를 등록한 보드 목록을 조회할 수 있습니다.
     ```
 
@@ -188,9 +208,10 @@ PW:
     ```
     보드 상세보기 페이지에서 특정 태그를 클릭하면 그 태그가 포함된 전체 보드 목록을 조회할 수 있습니다. 
 
-    유저 정보 페이지에서 태그 목록 중 특정 태그를 클릭하면 그 태그가 포함된 자신의 보드 목록을 조회할 수 있습니다. 
+    유저 정보 페이지에서 태그 목록 중 특정 태그를 클릭하면
+    그 태그가 포함된 자신의 보드 목록을 조회할 수 있습니다. 
     다른 유저의 정보 페이지에서도 태그 목록 중 특정 태그를 클릭하면
-     그 태그가 포함된 해당 유저의 보드 목록을 조회할 수 있습니다.
+    그 태그가 포함된 해당 유저의 보드 목록을 조회할 수 있습니다.
     ```
 
 -   보드 댓글 생성 | 조회 | 삭제
@@ -217,7 +238,8 @@ PW:
 - JSON Web Token 인증 방식
 
   ```
-  회원가입과 로그인 시 발급된 Refresh Token과 Access Token을 HTTP Only 속성으로 쿠키에 저장하여 응답합니다.
+  회원가입과 로그인 시 발급된 Refresh Token과 Access Token을
+  HTTP Only 속성으로 쿠키에 저장하여 응답합니다.
   JavaScript를 통해 발급된 토큰값에 직접 접근할 수 없기 때문에 요청 시 "credentials - include"를 통해 
   백엔드 서버로 전달하여 미들웨어를 통해 토큰을 검증하는 과정을 거칩니다.
   
@@ -228,17 +250,20 @@ PW:
 
   ```
   공통적으로 회원가입 후 자신을 표현하는 프로필 이미지와 닉네임을 수정할 수 있는 기능을 제공하고 있습니다.
-  처음 수정 페이지에 접근하면 데이터베이스를 통해 현재 본인이 설정해둔 닉네임과 썸네일 이미지를 확인할 수 있으며,
+  처음 수정 페이지에 접근하면 데이터베이스를 통해
+  현재 본인이 설정해둔 닉네임과 썸네일 이미지를 확인할 수 있으며,
   새로 프로필 이미지를 업로드하면서 미리보기로 현재 본인이 선택한 이미지를 확인할 수 있습니다.
 
   일반 회원가입 유저의 경우 추가로 비밀번호 수정이 가능하며,
-  이 때는 비밀번호 재확인 과정이 필요하고 비밀번호가 잘못된 경우 프로필 이미지, 닉네임 변경이 적용되지 않습니다.
+  이 때는 비밀번호 재확인 과정이 필요하고
+  비밀번호가 잘못된 경우 프로필 이미지, 닉네임 변경이 적용되지 않습니다.
   ```
 
 - Follow / Unfollow 기능
   ```
   관심있는 활동을 하는 유저와 팔로워를 맺을 수 있습니다.
-  자신의 팔로워/팔로잉 목록을 통해 관리가 가능하며, 해당 페이지에서 다른 유저의 정보 페이지로 이동이 가능합니다.
+  자신의 팔로워/팔로잉 목록을 통해 관리가 가능하며,
+  해당 페이지에서 다른 유저의 정보 페이지로 이동이 가능합니다.
   ```
 
 ### 5-5. Notification
@@ -246,8 +271,8 @@ PW:
 
 -   실시간 알림 기능
     ```
-    누군가 나를 팔로우 했을 때, 내 보드에 댓글 또는 좋아요를 남겼을 때, 내가 좋아요한 보드에 새로운 핀이 추가되었을 때 
-    Django-signal을 통한 알림이 생성됩니다.
+    누군가 나를 팔로우 했을 때, 내 보드에 댓글 또는 좋아요를 남겼을 때,
+    내가 좋아요한 보드에 새로운 핀이 추가됐을 때 Django-signal을 통한 알림이 생성됩니다.
     이 때 Channels를 활용하여 WebSocket을 통해 실시간 통신을 지원하고, 
     알림 메시지를 클라이언트에게 실시간으로 전달하게 됩니다.
     그와 동시에 알림 객체가 저장되어 본인이 수신한 알림들에 대한 여러 작업이 가능해집니다.
@@ -256,8 +281,10 @@ PW:
 -   알림 목록 조회 | 삭제 | 읽음 처리
     ```
     본인이 수신한 알림 목록을 조회할 수 있습니다. 
-    이 때 알림 내용을 클릭해 관련 보드나 유저 정보 페이지로 이동할 수 있습니다. 이렇게 클릭한 알림은 '읽음'처리가 됩니다.
-    각 알림의 오른쪽에 있는 체크박스를 체크해서 몇 개의 알림을 선택했는지 확인하고 다중 삭제 및 읽음 처리를 할 수 있습니다.
+    이 때 알림 내용을 클릭해 관련 보드나 유저 정보 페이지로 이동할 수 있습니다.
+    이렇게 클릭한 알림은 '읽음'처리가 됩니다.
+    각 알림의 오른쪽에 있는 체크박스를 체크해서 몇 개의 알림을 선택했는지 확인하고,
+    다중 삭제 및 읽음 처리를 할 수 있습니다.
     ```
 
     <br>
@@ -279,7 +306,7 @@ PW:
 
 
 ## 7. 고도화 기록
-#### 정규 프로젝트 기간 이후 추가할 기능과 수정 사항을 종합하여 고도화 계획을 세웠습니다. 기존과 동일하게 하루 3번 회의를 진행하였고 피드백 사항을 반영하여 GitHub Wiki를 더욱 체계적으로 활용하여 기록하였습니다.
+정규 프로젝트 기간 이후 추가할 기능과 수정 사항을 종합하여 고도화 계획을 세웠습니다. 기존과 동일하게 하루 3번 회의를 진행하였고 피드백 사항을 반영하여 GitHub Wiki를 더욱 체계적으로 활용하여 기록하였습니다.
 
 ### 7-1. 진행사항 및 일일 개발일지
 <img width="900px" src="https://github.com/inslog94/FavSpot/assets/43246395/a4317907-b4ba-4357-9185-4cabeff0998a"> <br>
@@ -304,12 +331,15 @@ PW:
 * 📖 [231011 개발일지](https://github.com/inslog94/FavSpot/wiki/231011-%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80)
 * 📖 [231012 개발일지](https://github.com/inslog94/FavSpot/wiki/231012-%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80)
 * 📖 [231013 개발일지](https://github.com/inslog94/FavSpot/wiki/231013-%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80)
+* 📖 [231016 개발일지](https://github.com/inslog94/FavSpot/wiki/231016-%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80)
+* 📖 [231017 개발일지](https://github.com/inslog94/FavSpot/wiki/231017-%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80)
+* 📖 [231019-20 개발일지](https://github.com/inslog94/FavSpot/wiki/231020-%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80)
 
 <br>
 
 ### 7-2. TIL (Today I Learn)
 <details>
-<summary>예시 이미지 첨부</summary>
+<summary> 예시 이미지 첨부</summary>
 
 ![image](https://github.com/inslog94/FavSpot/assets/43246395/478773c1-3d32-4b67-beaf-dae3d577f622)
 
@@ -335,7 +365,9 @@ PW:
 * 🔧 [231011 TIL](https://github.com/inslog94/FavSpot/wiki/231011-TIL)
 * 🔧 [231012 TIL](https://github.com/inslog94/FavSpot/wiki/231012-TIL)
 * 🔧 [231013 TIL](https://github.com/inslog94/FavSpot/wiki/231013-TIL)
-
+* 🔧 [231016 TIL](https://github.com/inslog94/FavSpot/wiki/231016-TIL)
+* 🔧 [231017 TIL](https://github.com/inslog94/FavSpot/wiki/231017-TIL)
+* 🔧 [231019-20 TIL](https://github.com/inslog94/FavSpot/wiki/231020-TIL)
 <br>
 
 ## 8. 협업 방식
@@ -343,7 +375,6 @@ PW:
 💡 앱 단위로 역할을 나누어 각자 맡은 앱에 대한 브랜치를 생성하여 기능 구현을 하였습니다.
 이 결과 코드를 병합하는 과정에서 충돌을 최소화할 수 있었습니다.
 ```
-<br>
 
 ### GitHub 프로젝트(Projects) 활용한 작업 관리 & Pull Request - Merge
 
@@ -514,78 +545,282 @@ PW:
 
 ## 12. 기능 설계
 ### 12-1. [BE] URL / Method 기능 설계
-|Function|Method|URL|
-|------|---|---|
-|**User**|||
-|소셜 로그인|POST|user/auth/|
-|로그인|POST|user/login/|
-|회원가입|POST|user/signup/|
-|유저정보 조회|GET|user/\<int:pk>/|
-|내 정보 조회|GET|user/me/|
-|프로필 수정|PATCH|user/me/|
-|팔로우|POST|user/follows/|
-|팔로우 삭제|DELETE|user/follows/\<int:pk>/|
-|팔로우 리스트 조회|GET|user/\<int:pk>/following/|
-|팔로잉 리스트 조회|GET|user/\<int:pk>/follower/|
-|**Pin**|||
-|핀 상세정보 조회|GET|pin/\<str:place_id>/|
-|핀 생성|POST|pin/|
-|핀 수정|PUT|pin/content/\<int:pk>/|
-|핀 삭제|DELETE|pin/content/\<int:pk>/|
-|**Board**|||
-|보드 전체 목록 조회|GET|board/|
-|보드 상세정보 조회|GET|board/\<int:pk>/|
-|보드 생성|POST|board/|
-|보드 수정|PUT|board/\<int:pk>/|
-|보드 삭제|DELETE|board/\<int:pk>/|
-|보드 댓글 작성|POST|board/\<int:pk>/comment/|
-|보드 댓글 삭제|DELETE|board/comment/\<int:pk>/|
-|보드 좋아요 등록|POST|board/\<int:pk>/like/|
-|보드 좋아요 해제|DELETE|board/like/\<int:pk>/|
-|좋아요 등록한 보드 목록 조회|GET|board/like/|
-|보드 검색|GET|board/search/|
-|특정 태그가 등록된 보드 목록 조회|GET|board/\<int:pk>\/tag/|
-|**Notification**|||
-|알림 목록 조회|GET|notification/|
-|알림 삭제|DELETE|notification/\<int:pk>/|
-|알림 읽음 처리|POST|notification/\<int:pk>/read/|
+<table>
+  <tr>
+    <th>Function</th>
+    <th>Method</th>
+    <th>URL</th>
+  </tr>
+  <tr>
+    <th colspan="3" style="text-align:center;"><strong>User</strong></th>
+  </tr>
+  <tr>
+    <td>소셜 로그인</td>
+    <td>POST</td>
+    <td>user/auth/</td>
+  </tr>
+  <tr>
+    <td>로그인</td>
+    <td>POST</td>
+    <td>user/login/</td>
+  </tr>
+  <tr>
+    <td>회원가입</td>
+    <td>POST</td>
+    <td>user/signup/</td>
+  </tr>
+  <tr>
+    <td>유저정보 조회</td>
+    <td>GET</td>
+    <td>user/&lt;int:pk&gt;/</td>
+  </tr>
+  <tr>
+    <td>내 정보 조회</td>
+    <td>GET</td>
+    <td>user/me/</td>
+  </tr>
+  <tr>
+    <td>프로필 수정</td>
+    <td>PATCH</td>
+    <td>user/me/</td>
+  </tr>
+  <tr>
+    <td>팔로우</td>
+    <td>POST</td>
+    <td>user/follows/</td>
+  </tr>
+  <tr>
+    <td>팔로우 삭제</td>
+    <td>DELETE</td>
+    <td>user/follows/&lt;int:pk&gt;/</td>
+  </tr>
+  <tr>
+    <td>팔로우 리스트 조회</td>
+    <td>GET</td>
+    <td>user/&lt;int:pk&gt;/following/</td>
+  </tr>
+  <tr>
+    <td>팔로잉 리스트 조회</td>
+    <td>GET</td>
+    <td>user/&lt;int:pk&gt;/follower/</td>
+  </tr>
+  <tr>
+    <th colspan="3" style="text-align:center;"><strong>Pin</strong></th>
+  </tr>
+  <tr>
+    <td>핀 상세정보 조회</td>
+    <td>GET</td>
+    <td>pin/&lt;str:place_id&gt;/</td>
+  </tr>
+  <tr>
+    <td>핀 생성</td>
+    <td>POST</td>
+    <td>pin/</td>
+  </tr>
+  <tr>
+    <td>핀 수정</td>
+    <td>PUT</td>
+    <td>pin/content/&lt;int:pk&gt;/</td>
+  </tr>
+  <tr>
+    <td>핀 삭제</td>
+    <td>DELETE</td>
+    <td>pin/content/&lt;int:pk&gt;/</td>
+  </tr>
+  <tr>
+    <th colspan="3" style="text-align:center;"><strong>Board</strong></th>
+  </tr>
+  <tr>
+    <td>보드 전체 목록 조회</td>
+    <td>GET</td>
+    <td>board/</td>
+  </tr>
+  <tr>
+    <td>보드 상세정보 조회</td>
+    <td>GET</td>
+    <td>board/&lt;int:pk&gt;/</td>
+  </tr>
+  <tr>
+    <td>보드 생성</td>
+    <td>POST</td>
+    <td>board/</td>
+  </tr>
+  <tr>
+    <td>보드 수정</td>
+    <td>PUT</td>
+    <td>board/&lt;int:pk&gt;/</td>
+  </tr>
+  <tr>
+    <td>보드 삭제</td>
+    <td>DELETE</td>
+    <td>board/&lt;int:pk&gt;/</td>
+  </tr>
+  <tr>
+    <td>보드 댓글 작성</td>
+    <td>POST</td>
+    <td>board/&lt;int:pk&gt;/comment/</td>
+  </tr>
+  <tr>
+    <td>보드 댓글 삭제</td>
+    <td>DELETE</td>
+    <td>board/comment/&lt;int:pk&gt;/</td>
+  </tr>
+  <tr>
+    <td>보드 좋아요 등록</td>
+    <td>POST</td>
+    <td>board/&lt;int:pk&gt;/like/</td>
+  </tr>
+  <tr>
+    <td>보드 좋아요 해제</td>
+    <td>DELETE</td>
+    <td>board/like/&lt;int:pk&gt;/</td>
+  </tr>
+  <tr>
+    <td>좋아요 등록한 보드 목록 조회</td>
+    <td>GET</td>
+    <td>board/like/</td>
+  </tr>
+  <tr>
+    <td>보드 검색</td>
+    <td>GET</td>
+    <td>board/search/</td>
+  </tr>
+  <tr>
+    <td>특정 태그가 등록된 보드 목록 조회</td>
+    <td>GET</td>
+    <td>board/&lt;int:pk&gt;/tag/</td>
+  </tr>
+  <tr>
+    <th colspan="3" style="text-align:center;"><strong>Notification</strong></th>
+  </tr>
+  <tr>
+    <td>알림 목록 조회</td>
+    <td>GET</td>
+    <td>notification/</td>
+  </tr>
+  <tr>
+    <td>알림 삭제</td>
+    <td>DELETE</td>
+    <td>notification/&lt;int:pk&gt;/</td>
+  </tr>
+  <tr>
+    <td>알림 읽음 처리</td>
+    <td>POST</td>
+    <td>notification/&lt;int:pk&gt;/read/</td>
+  </tr>
+</table>
+
+<br>
 
 ### 12-2. [FE] 페이지 구상 및 기능 설계
-|페이지|위치|기능|
-|---|---|---|
-|**Main**|||
-|메인 페이지|/|[지도에서 키워드 검색 후 마커 / 결과 목록에서 특정 장소 클릭] <br> - 상세보기 버튼 <br> - 핀 생성 버튼 <br> - 보드 간편생성 버튼 <br> [보드 목록] <br> - 검색 키워드가 보드의 이름 또는 태그에 포함되는 보드 목록 조회 <br> - 정렬 드롭다운 클릭 시 최신순 / 좋아요순 / 핀개수 순으로 정렬|
-|**User**|||
-|로그인|header|소셜 로그인(카카오, 구글) 가능|
-|회원가입|header|중복 이메일, 비밀번호 규칙 등 여러 가지 예외 처리 기능|
-|유저 정보|header| 내 보드 목록 조회 및 보드 생성 버튼 <br> [프로필 사이드바] <br> - 프로필 보기 <br> - 프로필 수정 버튼(타인-팔로우 버튼) <br> - 팔로우/팔로워 리스트 버튼(개수) <br> - 핀 콘텐츠 리스트 버튼 <br> - 좋아요한 보드 리스트 버튼|
-|프로필 수정|header, 프로필 사이드바|닉네임, 사진 등은 자유롭게 변경, 비밀번호 변경시 기존 비밀번호 입력 필요|
-|팔로우/팔로워 리스트|프로필 사이드바|제공되는 데이터에 따라 팔로우/팔로워 목록 보여줌, 팔로우/언팔로우 가능|
-|**Pin**|||
-|핀 상세정보 조회 모달|메인페이지, 보드 상세정보 페이지, 핀 코멘트 목록 페이지|- 핀 상세정보 표기 <br> - 그 장소의 정적 지도 <br> - 핀 생성(저장)버튼 <br> - 본인 핀 콘텐츠 삭제 버튼 <br> - 핀 생성시 핀 콘텐츠(사진/짧은 글) 작성 기능|
-|핀 콘텐츠 리스트|프로필 사이드바|- 자신이 작성한 핀 콘텐츠 목록 보기 <br> - 핀 이름 클릭시 상세정보 조회 모달 <br> - 수정/삭제 버튼|
-|**Board**|||
-|보드 생성 모달|유저 정보 페이지|- 보드 이름 설정 <br> - 보드 태그 추가|
-|보드 상세정보|메인페이지, 유저 정보 페이지|- 보드 정보 (보드 이름, 작성자, 작성 시간, 좋아요 개수, 태그, 공개 여부) <br> - 보드에 포함된 핀들이 찍혀있는 지도 <br> - 좋아요 적용/해제 버튼 및 로그인된 유저의 좋아요 등록 여부 <br> - 보드 수정/삭제 버튼 <br> - 핀 목록 <br> - 댓글 목록 및 본인 댓글 삭제 버튼 <br> - 댓글 작성란|
-|보드 수정 모달|보드 상세정보 페이지|- 보드 이름 수정 <br> - 보드 태그 추가/삭제 <br> - 공개 여부 수정 <br> - 해당 보드에 등록된 핀 삭제|
-|좋아요한 보드 리스트|프로필 사이드바|본인 또는 다른 유저가 좋아요를 등록한 보드 목록 조회|
-|특정 태그 포함하는 보드 목록|보드 상세정보 페이지|특정 태그를 포함하는 모든 보드 목록 조회|
-|특정 태그 포함하는 본인/다른 유저 보드 목록|유저 정보 페이지|특정 태그를 포함하는 본인/다른 유저의 보드 목록 조회|
-|**Notification**|||
-|알림 리스트|header|- 본인이 받은 알림 목록 표기 <br> - 클릭으로 관련 페이지 이동 및 읽음 처리 <br> - 체크박스를 통한 다중 삭제 및 읽음 버튼|
+<table>
+  <tr>
+    <th>페이지</th>
+    <th>위치</th>
+    <th>기능</th>
+  </tr>
+  <tr>
+    <th colspan="3" style="text-align:center; font-weight: bold;">Main</th>
+  </tr>
+  <tr>
+    <td>메인 페이지</td>
+    <td>/</td>
+    <td>[지도에서 키워드 검색 후 마커 / 결과 목록에서 특정 장소 클릭] <br> - 상세보기 버튼 <br> - 핀 생성 버튼 <br> - 보드 간편생성 버튼 <br> [보드 목록] <br> - 검색 키워드가 보드의 이름 또는 태그에 포함되는 보드 목록 조회 <br> - 정렬 드롭다운 클릭 시 최신순 / 좋아요순 / 핀개수 순으로 정렬</td>
+  </tr>
+  <tr>
+    <th colspan="3" style="text-align:center; font-weight: bold;">User</th>
+  </tr>
+  <tr>
+    <td>로그인</td>
+    <td>header</td>
+    <td>소셜 로그인(카카오, 구글) 기능</td>
+  </tr>
+  <tr>
+    <td>회원가입</td>
+    <td>header</td>
+    <td>중복 이메일, 비밀번호 규칙 등 여러 가지 예외 처리 기능</td>
+  </tr>
+  <tr>
+    <td>유저 정보</td>
+    <td>header</td>
+    <td> 내 보드 목록 조회 및 보드 생성 버튼 <br> [프로필 사이드바] <br> - 프로필 조회 <br> - 프로필 수정 버튼(타인-팔로우 버튼) <br> - 팔로우/팔로워 리스트 버튼(개수) <br> - 핀 콘텐츠 리스트 버튼 <br> - 좋아요한 보드 리스트 버튼</td>
+  </tr>
+  <tr>
+    <td>프로필 수정</td>
+    <td>header, 프로필 사이드바</td>
+    <td>닉네임, 사진 등은 자유롭게 변경, 비밀번호 변경 시 기존 비밀번호 입력 필요</td>
+  </tr>
+  <tr>
+    <td>팔로우/팔로워 리스트</td>
+    <td>프로필 사이드바</td>
+    <td>제공되는 데이터에 따라 팔로우/팔로워 목록 조회 기능, 팔로우/언팔로우 기능</td>
+  </tr>
+  <tr>
+    <th colspan="3" style="text-align:center; font-weight: bold;">Pin</th>
+  </tr>
+  <tr>
+    <td>핀 상세정보 조회 모달</td>
+    <td>메인페이지, 보드 상세정보 페이지, 핀 코멘트 목록 페이지</td>
+    <td>- 핀 상세정보 표기 <br> - 그 장소의 정적 지도 <br> - 핀 생성(저장) 버튼 <br> - 본인 핀 콘텐츠 삭제 버튼 <br> - 핀 생성시 핀 콘텐츠(사진/짧은 글) 작성 기능</td>
+  </tr>
+  <tr>
+    <td>핀 콘텐츠 리스트</td>
+    <td>프로필 사이드바</td>
+    <td>- 자신이 작성한 핀 콘텐츠 목록 조회 <br> - 핀 이름 클릭시 상세정보 조회 모달 <br> - 수정/삭제 버튼</td>
+  </tr>
+  <tr>
+    <th colspan="3" style="text-align:center; font-weight: bold;">Board</th>
+  </tr>
+  <tr>
+    <td>보드 생성 모달</td>
+    <td>유저 정보 페이지</td>
+    <td>- 보드 이름 및 공개 여부 설정 <br> - 보드 태그 추가</td>
+  </tr>
+  <tr>
+    <td>보드 상세정보</td>
+    <td>메인페이지, 유저 정보 페이지</td>
+    <td>- 보드 정보 (보드 이름, 작성자, 작성 시간, 좋아요 개수, 태그, 공개 여부) <br> - 보드에 포함된 핀들이 찍혀있는 지도 <br> - 좋아요 적용/해제 버튼 및 로그인된 유저의 좋아요 등록 여부 <br> - 보드 수정/삭제 버튼 <br> - 핀 목록 <br> - 댓글 목록 및 본인 댓글 삭제 버튼 <br> - 댓글 작성란</td>
+  </tr>
+  <tr>
+    <td>보드 수정 모달</td>
+    <td>보드 상세정보 페이지</td>
+    <td>- 보드 이름 수정 <br> - 보드 태그 추가/삭제 <br> - 공개 여부 수정 <br> - 해당 보드에 등록된 핀 삭제</td>
+  </tr>
+  <tr>
+    <td>좋아요한 보드 리스트</td>
+    <td>프로필 사이드바</td>
+    <td>본인 또는 다른 유저가 좋아요를 등록한 보드 목록 조회</td>
+  </tr>
+  <tr>
+    <td>특정 태그 포함하는 보드 목록</td>
+    <td>보드 상세정보 페이지</td>
+    <td>특정 태그를 포함하는 모든 보드 목록 조회</td>
+  </tr>
+  <tr>
+    <td>특정 태그 포함하는 본인/다른 유저 보드 목록</td>
+    <td>유저 정보 페이지</td>
+    <td>특정 태그를 포함하는 본인/다른 유저의 보드 목록 조회</td>
+  </tr>
+  <tr>
+    <th colspan="3" style="text-align:center; font-weight: bold;">Notification</th>
+  </tr>
+  <tr>
+    <td>알림 리스트</td>
+    <td>header</td>
+    <td>- 본인이 받은 알림 목록 표기 <br> - 클릭으로 관련 페이지 이동 및 읽음 처리 <br> - 체크박스를 통한 다중 삭제 및 읽음 버튼</td>
+  </tr>
+</table>
 
 <br><br>
 
-
 ## 13. API 명세서
-### URL
-**http://.../schema/swagger-ui/**
-
 ### DRF-Spectacular를 활용한 Swagger UI
+URL: http://favspot.site:8000/schema/swagger-ui/ 
+
 <img width="900px" src="https://github.com/inslog94/FavSpot/assets/43246395/30a5c809-d84a-45e8-8524-d828e6605d80">
 
 ### 1. (예시1) Board 생성 API
-- URL: `http://127.0.0.1:8000/schema/swagger-ui/#/board/board_create/`
+- URL: http://favspot.site:8000/schema/swagger-ui/#/board/board_create/
 - Method: POST
 - Description: 새로운 보드를 생성합니다. <br>
 요청 본문에는 'title' 필드 값이 반드시 포함되어야 합니다. <br>
@@ -623,7 +858,7 @@ PW:
 ```
 
 ### 2. (예시2) Pin 생성 API
-- URL: `http://127.0.0.1:8000/schema/swagger-ui/#/pin/pin_create/`
+- URL: http://favspot.site:8000/schema/swagger-ui/#/pin/pin_create/
 - Method: POST
 - Description: 새로운 핀을 생성하거나, 이미 그 장소에 대한 핀이 생성되어 있는 경우 지정해준 보드에 핀을 저장합니다. 이 때 핀 코멘트를 함께 생성합니다. <br>
 요청 본문에는 'board_id', 'category', 'place_id', 'title', 'new_address', 'old_address', 'lat_lng' 필드가 반드시 포함되어야 합니다. <br>
@@ -678,10 +913,10 @@ PW:
 ```
 
 ### 3. (예시3) Notification 목록 조회 API
-- URL: `http://127.0.0.1:8000/schema/swagger-ui/#/notification/notification_retrieve/`
+- URL: http://favspot.site:8000/schema/swagger-ui/#/notification/notification_retrieve/
 - Method: GET
 - Description: 본인이 수신한 알림 목록을 조회합니다. <br>
-알림은 본인을 누군가가 팔로우했을 때, 본인의 보드에 누군가가 댓글을 남기거나 좋아요를 했을 때, 본인이 좋아요한 다른 유저의 보드에 새롭게 핀이 추가되었을 때 django-signal을 통해 생성되고 수신됩니다. <br>
+알림은 본인을 누군가가 팔로우했을 때 또는 본인의 보드에 누군가가 댓글을 남기거나 좋아요를 했을 때, <br> 본인이 좋아요한 다른 유저의 보드에 새롭게 핀이 추가되었을 때 django-signal을 통해 생성되고 수신됩니다. <br>
 인증된 사용자만이 본인에게 수신된 알림(reciever가 본인의 id)들만 볼 수 있습니다. <br>
 이때 응답에는 알림 메세지 내용, 읽음 여부, 수신자, 발신자, 발신 시간 등이 포함됩니다. <br>
 또한 알림과 연관된 페이지로 연결하는 기능을 사용할 수 있도록 알림 종류와 연관 보드/유저의 pk값이 포함되어 있습니다.
@@ -705,20 +940,58 @@ PW:
 <br>
 
 ## 14. 샘플 이미지
-| 보드 간편 생성 |
+| 보드 간편 생성 및 핀 저장 |
 |:---:|
-| |
+|<img width="900px" alt="image" src="https://github.com/inslog94/FavSpot/assets/43246395/14bbf9b6-a2ec-48ec-8e13-08e418b24c90">|
 
-| 장소 검색 후 핀 저장 |
+
+| 핀 상세보기 및 저장 |
 |:---:|
-| |
+|<img width="900px" alt="image" src="https://github.com/inslog94/FavSpot/assets/43246395/da46714f-b3ed-40e0-b8ef-699b4d7347d8">|
+
+
+| 정렬 기능 및 댓글 작성, 삭제 |
+|:---:|
+|<img width="900px" alt="image" src="https://github.com/inslog94/FavSpot/assets/43246395/72d40a5d-a236-47cc-8fc9-c222c4665c60">|
+
+
+| 실시간 알림 및 조회 |
+|:---:|
+|<img width="900px" alt="image" src="https://github.com/inslog94/FavSpot/assets/43246395/9ebf3cce-7194-471b-8930-651118df4c21">|
+
+
+| 프로필 수정 |
+|:---:|
+|<img width="900px" alt="image" src="https://github.com/inslog94/FavSpot/assets/43246395/0c29c61f-5cb6-4a56-8ec0-82b74696bac5">|
+
+
+| 핀 목록 조회 및 코멘트 작성, 삭제 |
+|:---:|
+|<img width="900px" alt="image" src="https://github.com/inslog94/FavSpot/assets/43246395/c2855f2e-27c8-4f2e-bfc0-7fbdf6d418cb">|
+
+
+| 팔로우, 언팔로우 및 다른 유저가 좋아요한 보드 목록, 특정 태그가 연결된 보드 목록 조회 |
+|:---:|
+|<img width="900px" alt="image" src="https://github.com/inslog94/FavSpot/assets/43246395/4ccb84da-46d6-4661-a200-c82dd7b1687b">|
+
+
+| 특정 태그가 연결된 보드 모든 목록 조회 |
+|:---:|
+|<img width="900px" alt="image" src="https://github.com/inslog94/FavSpot/assets/43246395/3eca96cc-0a17-42fa-baf2-eab57a4c4aee">|
+
+
+| 보드 수정 |
+|:---:|
+|<img width="900px" alt="image" src="https://github.com/inslog94/FavSpot/assets/43246395/c3f9ae98-6e44-4bc7-b896-3da5bfc1e539">|
 
 
 <br>
 
 ## 15. 느낀점
-- 공통 <br>
-에러 메시지, 예외처리
+### 에러 및 예외 처리 중요성  
+ㅇㅇㅇ
+
+##
 
 **이 영**
 
